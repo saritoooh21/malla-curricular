@@ -40,7 +40,7 @@
     }
 
     .materia {
-      background: #e0e0e0;
+      background: #cfd8dc;
       margin: 0.5rem 0;
       padding: 0.6rem;
       border-radius: 8px;
@@ -57,7 +57,7 @@
     }
 
     .materia.completada {
-      background-color: #b39ddb;
+      background-color: #d8b9f5; /* lila */
       text-decoration: line-through;
       color: #fff;
     }
@@ -174,19 +174,27 @@
 
       sem.materias.forEach((materia, j) => {
         const m = document.createElement("div");
-        m.className = "materia futura"; // Todas empiezan como futuras
+        m.className = i === 0 ? "materia inscribible" : "materia futura";
 
         m.innerHTML = `
           <span class="nombre">${materia.nombre}</span>
           <span class="creditos">Créditos: ${materia.creditos}</span>
         `;
 
-        // Simulación: desbloquear materias del primer semestre
-        if (i === 0) m.classList.remove("futura");
-        if (i === 1 && j === 0) m.classList.remove("futura"); m.classList.add("inscribible");
-
         m.addEventListener("click", () => {
           m.classList.toggle("completada");
+
+          const materiasSemestre = div.querySelectorAll(".materia");
+          const completadas = [...materiasSemestre].filter(mat => mat.classList.contains("completada"));
+
+          // Si todas las materias del semestre están completadas
+          if (completadas.length === materiasSemestre.length && materiasPorSemestre[i + 1]) {
+            const siguienteSemestre = document.querySelectorAll(".semestre")[i + 1];
+            const materiasSig = siguienteSemestre.querySelectorAll(".materia");
+            materiasSig.forEach((ms, k) => {
+              if (k === 0) ms.className = "materia inscribible";
+            });
+          }
         });
 
         div.appendChild(m);
