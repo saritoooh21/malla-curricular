@@ -1,0 +1,60 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.malla {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  padding: 0 10px;
+}
+
+.semestre {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 15px;
+}
+
+.semestre h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.materia {
+  background: #e4e4e4;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-bottom: 2px solid #ccc;
+}
+
+.materia .nombre {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.materia .creditos {
+  font-weight: normal;
+  font-size: 0.9em;
+  color: #333;
+  display: block;
+  border-top: 1px solid #aaa;
+  padding-top: 5px;
+}
+
+.materia.completada {
+  background-color: #c79fff; /* color lila */
+  color: white;
+  text-decoration: line-through;
+}
